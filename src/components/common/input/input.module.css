@@ -1,0 +1,29 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    min-height: 3.625rem;
+}
+
+.input {
+    width: 18.75rem;
+    padding: 0.75rem 0.625rem;
+    font-size: 0.875rem;
+    border-radius: 0.25rem;
+    border: none;
+    background: var(--main-color);
+}
+
+.input:focus {
+    outline: 2px solid black;
+}
+
+.error {
+    font-size: 0.75rem;
+    color: var(--warning-color);
+}
+
+.caption {
+    font-size: 0.75rem;
+    color: var(--font-gray-color);
+}
