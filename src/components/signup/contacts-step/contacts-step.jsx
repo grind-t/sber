@@ -5,15 +5,11 @@ import PrimaryButton from "../../common/primary-button";
 import SecondaryButton from "../../common/secondary-button";
 import SignUpFormActions from "../form-actions";
 import SignUpFormFields from "../form-fields";
-import { validateEmail, validateField } from "../../../lib/validation";
-
-function checkStep(name, surname, email) {
-  return !(
-    validateField(name) ||
-    validateField(surname) ||
-    validateEmail(email)
-  );
-}
+import {
+  checkContacts,
+  validateEmail,
+  validateField,
+} from "../../../lib/validation";
 
 export default function SignUpContactsStep({ data, onGoBack, onSubmit }) {
   const [name, setName] = useState(data.name || "");
@@ -22,10 +18,12 @@ export default function SignUpContactsStep({ data, onGoBack, onSubmit }) {
   const [surnameError, setSurnameError] = useState("");
   const [email, setEmail] = useState(data.email || "");
   const [emailError, setEmailError] = useState("");
-  const [isValid, setIsValid] = useState(() => checkStep(name, surname, email));
+  const [isValid, setIsValid] = useState(() =>
+    checkContacts(name, surname, email)
+  );
 
   const handleBlur = () => {
-    setIsValid(checkStep(name, surname, email));
+    setIsValid(checkContacts(name, surname, email));
   };
 
   const handleSubmit = (e) => {

@@ -24,3 +24,19 @@ export function validatePhone(value) {
 export function validateEmail(value) {
   return emailRegex.test(value) ? "" : emailFormatError;
 }
+
+export function checkCredentials(login, password, phone) {
+  return !(
+    validateField(login) ||
+    validatePassword(password) ||
+    validatePhone(phone)
+  );
+}
+
+export function checkContacts(name, surname, email) {
+  return !(
+    validateField(name) ||
+    validateField(surname) ||
+    validateEmail(email)
+  );
+}

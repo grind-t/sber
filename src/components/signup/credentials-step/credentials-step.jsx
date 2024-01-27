@@ -2,6 +2,7 @@ import { useState } from "react";
 import Input from "../../common/input";
 import Label from "../../common/label";
 import {
+  checkCredentials,
   validateField,
   validatePassword,
   validatePhone,
@@ -9,14 +10,6 @@ import {
 import SignUpFormFields from "../form-fields";
 import SignUpFormActions from "../form-actions";
 import PrimaryButton from "../../common/primary-button";
-
-function checkStep(login, password, phone) {
-  return !(
-    validateField(login) ||
-    validatePassword(password) ||
-    validatePhone(phone)
-  );
-}
 
 export default function SignUpCredentialsStep({ data, onSubmit }) {
   const [login, setLogin] = useState(data.login || "");
@@ -26,11 +19,11 @@ export default function SignUpCredentialsStep({ data, onSubmit }) {
   const [phone, setPhone] = useState(data.phone || "");
   const [phoneError, setPhoneError] = useState("");
   const [isValid, setIsValid] = useState(() =>
-    checkStep(login, password, phone)
+    checkCredentials(login, password, phone)
   );
 
   const handleBlur = () => {
-    setIsValid(checkStep(login, password, phone));
+    setIsValid(checkCredentials(login, password, phone));
   };
 
   return (
